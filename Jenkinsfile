@@ -81,7 +81,6 @@ def build() {
 
 def clonePythonGreetingsRepo() {
     cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51")
-//    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "")
 }
 
 def cloneJsApiFramework() {
@@ -113,7 +112,6 @@ def deployToEnv(String env, Integer port) {
     bat "pm2 delete greetings-app-${env} & EXIT /B 0"
 
     bat "pm2 start app.py --name greetings-app-${env} -- --port ${port}"
-//    bat "pm2 start app.py --name greetings-app-${env}"
 
     echo "Deployment finished to the ${env} environment"
 }
