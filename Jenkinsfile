@@ -12,56 +12,56 @@ pipeline {
         stage('deploy-to-dev') {
             steps {
                 script {
-                    deployToEnv("DEV")
+                    deployToEnv("dev", 7001)
                 }
             }
         }
         stage('tests-on-dev') {
             steps {
                 script {
-                    performTestsOoEnv("DEV")
+                    performTestsOoEnv("dev")
                 }
             }
         }
         stage('deploy-to-staging') {
             steps {
                 script {
-                    deployToEnv("STAGING")
+                    deployToEnv("staging", 7002)
                 }
             }
         }
         stage('tests-on-staging') {
             steps {
                 script {
-                    performTestsOoEnv("STAGING")
+                    performTestsOoEnv("staging")
                 }
             }
         }
         stage('deploy-to-preprod') {
             steps {
                 script {
-                    deployToEnv("PREPROD")
+                    deployToEnv("preprod", 7003)
                 }
             }
         }
         stage('tests-on-preprod') {
             steps {
                 script {
-                    performTestsOoEnv("PREPROD")
+                    performTestsOoEnv("preprod")
                 }
             }
         }
         stage('deploy-to-prod') {
             steps {
                 script {
-                    deployToEnv("PROD")
+                    deployToEnv("prod", 7004)
                 }
             }
         }
         stage('tests-on-prod') {
             steps {
                 script {
-                    performTestsOoEnv("PROD")
+                    performTestsOoEnv("prod")
                 }
             }
         }
@@ -71,7 +71,7 @@ pipeline {
 
 def build() {
     echo "Build started"
-    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
+    clonePythonGreetingsRepo()
 
     echo "Installing required dependencies"
     bat "pip install -r requirements.txt"
@@ -79,7 +79,11 @@ def build() {
     echo "Build finished"
 }
 
-def cloneRepo(repoName, url, branch) {
+def clonePythonGreetingsRepo() {
+    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
+}
+
+def cloneRepo(String repoName, String url, String branch) {
     echo "Repository ${repoName} cloning started"
 
     git(
@@ -92,8 +96,13 @@ def cloneRepo(repoName, url, branch) {
     echo "Repository ${repoName} cloning finished"
 }
 
-def deployToEnv(String env) {
+def deployToEnv(String env, Integer port) {
     echo "Deployment started to the ${env} environment"
+
+    clonePythonGreetingsRepo()
+    bat "pm2 delete greetings-app-${env} & set \"errorlevel=0\""
+    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
+
     echo "Deployment finished to the ${env} environment"
 }
 
