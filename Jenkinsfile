@@ -84,7 +84,7 @@ def clonePythonGreetingsRepo() {
 }
 
 def cloneJsApiFramework() {
-    cloneRepo("JS API Framework", "https://github.com/mtararujs/course-js-api-framework", "main")
+    cloneRepo("JS API Framework", "https://github.com/U1-nix/course-js-api-framework", "main")
 }
 
 def cloneRepo(String repoName, String url, String branch, String commit = null) {
