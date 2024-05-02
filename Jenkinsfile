@@ -80,9 +80,11 @@ def build() {
 }
 
 def deployToEnv(String env) {
-    echo "Deploying to the ${env} environment"
+    echo "Deployment started to the ${env} environment"
+    echo "Deployment finished to the ${env} environment"
 }
 
 def performTestsOoEnv(String env) {
-    echo "Performing tests on ${env} environment"
+    echo "Test execution started on ${env} environment"
+    echo "Test execution finished on ${env} environment"
 }
