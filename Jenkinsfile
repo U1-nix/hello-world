@@ -70,13 +70,22 @@ pipeline {
 
 
 def build() {
-    echo "Installing required dependencies"
+    echo "Build started"
+    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
+    echo "Build finished"
+}
+
+def cloneRepo(repoName, url, branch) {
+    echo "Repository ${repoName} cloning started"
 
     git(
-            url: "https://github.com/mtararujs/python-greetings.git",
-            branch: "main"
+        url: url,
+        branch: branch
     )
+
+    echo "Listing cloned files"
     bat 'dir'
+    echo "Repository ${repoName} cloning finished"
 }
 
 def deployToEnv(String env) {
