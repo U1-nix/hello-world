@@ -80,7 +80,7 @@ def build() {
 }
 
 def clonePythonGreetingsRepo() {
-    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "a074399")
+    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "4e91144")
 }
 
 def cloneJsApiFramework() {
