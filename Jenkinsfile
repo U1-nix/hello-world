@@ -2,24 +2,49 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('install-pip-deps') {
             steps {
-                echo '... build success ... '
+                echo 'Installing required dependencies'
             }
         }
-        stage('Tests') {
+        stage('deploy-to-dev') {
             steps {
-                echo '... tests success ... '
+                echo 'Deploying to the DEV environment'
             }
         }
-        stage('Deploy') {
+        stage('tests-on-dev') {
             steps {
-                echo '... deploy success ... '
+                echo 'Performing tests on DEV environment'
             }
         }
-        stage('Clean up') {
+        stage('deploy-to-staging') {
             steps {
-                echo '... clean up success ... '
+                echo 'Deploying to the STAGING environment'
+            }
+        }
+        stage('tests-on-staging') {
+            steps {
+                echo 'Performing tests on STAGING environment'
+            }
+        }
+        stage('deploy-to-preprod') {
+            steps {
+                echo 'Deploying to the PREPROD environment'
+            }
+        }
+        stage('tests-on-preprod') {
+            steps {
+                echo 'Performing tests on PREPROD environment'
+            }
+        }
+        stage('deploy-to-prod') {
+            steps {
+                echo 'Deploying to the PROD environment'
+            }
+        }
+        stage('tests-on-prod') {
+            steps {
+                echo 'Performing tests on PROD environment'
             }
         }
     }
