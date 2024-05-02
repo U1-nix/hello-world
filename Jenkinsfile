@@ -37,20 +37,20 @@ pipeline {
                 }
             }
         }
-//        stage('deploy-to-preprod') {
-//            steps {
-//                script {
-//                    deployToEnv("preprod", 7003)
-//                }
-//            }
-//        }
-//        stage('tests-on-preprod') {
-//            steps {
-//                script {
-//                    performTestsOoEnv("preprod")
-//                }
-//            }
-//        }
+        stage('deploy-to-preprod') {
+            steps {
+                script {
+                    deployToEnv("preprod", 7003)
+                }
+            }
+        }
+        stage('tests-on-preprod') {
+            steps {
+                script {
+                    performTestsOoEnv("preprod")
+                }
+            }
+        }
         stage('deploy-to-prod') {
             steps {
                 script {
