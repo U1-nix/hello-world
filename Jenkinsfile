@@ -38,8 +38,10 @@ pipeline {
             }
         }
         stage('deploy-to-preprod') {
-            script {
-                deployToEnv("PREPROD")
+            steps {
+                script {
+                    deployToEnv("PREPROD")
+                }
             }
         }
         stage('tests-on-preprod') {
@@ -50,8 +52,10 @@ pipeline {
             }
         }
         stage('deploy-to-prod') {
-            script {
-                deployToEnv("PROD")
+            steps {
+                script {
+                    deployToEnv("PROD")
+                }
             }
         }
         stage('tests-on-prod') {
