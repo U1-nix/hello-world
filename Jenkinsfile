@@ -71,6 +71,12 @@ pipeline {
 
 def build() {
     echo "Installing required dependencies"
+
+    git(
+            url: "https://github.com/mtararujs/python-greetings.git",
+            branch: "main"
+    )
+    bat 'dir'
 }
 
 def deployToEnv(String env) {
