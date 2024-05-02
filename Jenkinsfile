@@ -4,48 +4,75 @@ pipeline {
     stages {
         stage('install-pip-deps') {
             steps {
-                echo 'Installing required dependencies'
+                script {
+                    build()
+                }
             }
         }
         stage('deploy-to-dev') {
             steps {
-                echo 'Deploying to the DEV environment'
+                script {
+                    deployToEnv("DEV")
+                }
             }
         }
         stage('tests-on-dev') {
             steps {
-                echo 'Performing tests on DEV environment'
+                script {
+                    performTestsOoEnv("DEV")
+                }
             }
         }
         stage('deploy-to-staging') {
             steps {
-                echo 'Deploying to the STAGING environment'
+                script {
+                    deployToEnv("STAGING")
+                }
             }
         }
         stage('tests-on-staging') {
             steps {
-                echo 'Performing tests on STAGING environment'
+                script {
+                    performTestsOoEnv("STAGING")
+                }
             }
         }
         stage('deploy-to-preprod') {
-            steps {
-                echo 'Deploying to the PREPROD environment'
+            script {
+                deployToEnv("PREPROD")
             }
         }
         stage('tests-on-preprod') {
             steps {
-                echo 'Performing tests on PREPROD environment'
+                script {
+                    performTestsOoEnv("PREPROD")
+                }
             }
         }
         stage('deploy-to-prod') {
-            steps {
-                echo 'Deploying to the PROD environment'
+            script {
+                deployToEnv("PROD")
             }
         }
         stage('tests-on-prod') {
             steps {
-                echo 'Performing tests on PROD environment'
+                script {
+                    performTestsOoEnv("PROD")
+                }
             }
         }
     }
+}
+
+
+def build() {
+    echo 'Installing required dependencies'
+}
+
+def deployToEnv(String env) {
+    echo 'Deploying to the ${env} environment'
+}
+
+def performTestsOoEnv(String env) {
+    echo 'Performing tests on ${env} environment'
 }
