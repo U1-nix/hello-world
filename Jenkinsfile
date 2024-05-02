@@ -83,6 +83,10 @@ def clonePythonGreetingsRepo() {
     cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
 }
 
+def cloneJsApiFramework() {
+    cloneRepo("JS API Framework", "https://github.com/mtararujs/course-js-api-framework", "main")
+}
+
 def cloneRepo(String repoName, String url, String branch) {
     echo "Repository ${repoName} cloning started"
 
@@ -102,7 +106,6 @@ def deployToEnv(String env, Integer port) {
     clonePythonGreetingsRepo()
     bat "pm2 delete greetings-app-${env} & EXIT /B 0"
 
-
 //    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
 
     bat "pm2 start app.py --name greetings-app-${env}"
@@ -112,5 +115,10 @@ def deployToEnv(String env, Integer port) {
 
 def performTestsOoEnv(String env) {
     echo "Test execution started on ${env} environment"
+
+    cloneJsApiFramework()
+    bat "npm install"
+    bat "npm run greetings greetings_${env}"
+
     echo "Test execution finished on ${env} environment"
 }
