@@ -72,6 +72,10 @@ pipeline {
 def build() {
     echo "Build started"
     cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
+
+    echo "Installing required dependencies"
+    bat "pip install -r requirements.txt"
+
     echo "Build finished"
 }
 
