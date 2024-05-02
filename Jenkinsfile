@@ -80,20 +80,24 @@ def build() {
 }
 
 def clonePythonGreetingsRepo() {
-    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main")
+    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "a07439908a5bf5832b16178e272c07247e961d66")
 }
 
 def cloneJsApiFramework() {
     cloneRepo("JS API Framework", "https://github.com/mtararujs/course-js-api-framework", "main")
 }
 
-def cloneRepo(String repoName, String url, String branch) {
+def cloneRepo(String repoName, String url, String branch, String commit = null) {
     echo "Repository ${repoName} cloning started"
 
     git(
         url: url,
         branch: branch
     )
+
+    if (commit != null) {
+        bat "git checkout ${commit}"
+    }
 
     echo "Listing cloned files"
     bat 'dir'
@@ -106,9 +110,8 @@ def deployToEnv(String env, Integer port) {
     clonePythonGreetingsRepo()
     bat "pm2 delete greetings-app-${env} & EXIT /B 0"
 
-//    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
-
-    bat "pm2 start app.py --name greetings-app-${env}"
+    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
+//    bat "pm2 start app.py --name greetings-app-${env}"
 
     echo "Deployment finished to the ${env} environment"
 }
