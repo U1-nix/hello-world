@@ -80,8 +80,8 @@ def build() {
 }
 
 def clonePythonGreetingsRepo() {
-//    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51")
-    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51")
+    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "4e911440a9886c7c26ccbb4eb55f0bc2a5067b51")
+//    cloneRepo("Python Greetings", "https://github.com/mtararujs/python-greetings", "main", "")
 }
 
 def cloneJsApiFramework() {
@@ -96,9 +96,10 @@ def cloneRepo(String repoName, String url, String branch, String commit = null) 
         branch: branch
     )
 
-//    if (commit != null) {
-//        bat "git checkout ${commit}"
-//    }
+    if (commit != null) {
+        bat "git checkout ${commit}"
+        echo "Checked out specific commit"
+    }
 
     echo "Listing cloned files"
     bat 'dir'
