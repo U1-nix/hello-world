@@ -101,7 +101,11 @@ def deployToEnv(String env, Integer port) {
 
     clonePythonGreetingsRepo()
     bat "pm2 delete greetings-app-${env} & EXIT /B 0"
-    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
+
+
+//    bat "pm2 start app.py --name greetings-app-${env} --port ${port}"
+
+    bat "pm2 start app.py --name greetings-app-${env}"
 
     echo "Deployment finished to the ${env} environment"
 }
