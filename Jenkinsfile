@@ -70,13 +70,13 @@ pipeline {
 
 
 def build() {
-    echo 'Installing required dependencies'
+    echo "Installing required dependencies"
 }
 
 def deployToEnv(String env) {
-    echo 'Deploying to the ${env} environment'
+    echo "Deploying to the ${env} environment"
 }
 
 def performTestsOoEnv(String env) {
-    echo 'Performing tests on ${env} environment'
+    echo "Performing tests on ${env} environment"
 }
